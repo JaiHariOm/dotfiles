@@ -473,7 +473,7 @@ fi
 # }}}
 #}}} =====================================================================
 
-export NVM_DIR="/home/harish/.nvm"
+export NVM_DIR="/home/user/.nvm"
 [ -s "$NVM_DIR/nvm.sh" ] && . "$NVM_DIR/nvm.sh"  # This loads nvm
 
 

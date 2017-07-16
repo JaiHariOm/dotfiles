@@ -1,0 +1,357 @@
+# i3 config file (v4)
+# mod
+set $mod Mod4
+
+# font
+font pango:System San Francisco Display 9
+
+# thin borders
+#hide_edge_borders both
+
+#floating_modifier $mod
+#cheat-sheet
+set CHEAT_EDITOR=nvim
+# change focus
+bindsym $mod+j focus left
+bindsym $mod+k focus down
+bindsym $mod+l focus up
+bindsym $mod+semicolon focus right
+
+# alternatively, you can use the cursor keys:
+bindsym $mod+Left focus left
+bindsym $mod+Down focus down
+bindsym $mod+Up focus up
+bindsym $mod+Right focus right
+
+# move focused window
+bindsym $mod+Shift+j move left
+bindsym $mod+Shift+k move down
+bindsym $mod+Shift+l move up
+bindsym $mod+Shift+semicolon move right
+
+# alternatively, you can use the cursor keys:
+bindsym $mod+Shift+Left move left
+bindsym $mod+Shift+Down move down
+bindsym $mod+Shift+Up move up
+bindsym $mod+Shift+Right move right
+
+# Settimg Workspace
+
+set $workspace1 "1 "
+set $workspace2 "2 "
+set $workspace3 "3 "
+set $workspace4 "4 "
+set $workspace5 "5 "
+set $workspace6 "6 "
+set $workspace7 "7 "
+set $workspace8 "8 "
+set $workspace9 "9 "
+set $workspace10 "10 "
+
+#set $workspace1 "1 "
+#set $workspace2 "2 "
+#set $workspace3 "3 "
+#set $workspace4 "4 "
+#set $workspace5 "5 "
+#set $workspace6 "6 "
+#set $workspace7 "7 "
+#set $workspace8 "8 "
+#set $workspace9 "9 "
+#set $workspace10 "10 "
+
+# switch to workspace
+bindsym $mod+1 workspace $workspace1
+bindsym $mod+2 workspace $workspace2
+bindsym $mod+3 workspace $workspace3
+bindsym $mod+4 workspace $workspace4
+bindsym $mod+5 workspace $workspace5
+bindsym $mod+6 workspace $workspace6
+bindsym $mod+7 workspace $workspace7
+bindsym $mod+8 workspace $workspace8
+bindsym $mod+9 workspace $workspace9
+bindsym $mod+0 workspace $workspace10
+
+# move focused container to workspace
+bindsym $mod+Shift+1 move container to workspace $workspace1
+bindsym $mod+Shift+2 move container to workspace $workspace2
+bindsym $mod+Shift+3 move container to workspace $workspace3
+bindsym $mod+Shift+4 move container to workspace $workspace4
+bindsym $mod+Shift+5 move container to workspace $workspace5
+bindsym $mod+Shift+6 move container to workspace $workspace6
+bindsym $mod+Shift+7 move container to workspace $workspace7
+bindsym $mod+Shift+8 move container to workspace $workspace8
+bindsym $mod+Shift+9 move container to workspace $workspace9
+bindsym $mod+Shift+0 move container to workspace $workspace10
+
+# resize window (you can also use the mouse for that)
+mode "resize" {
+        #bindsym j resize shrink width 10 px or 10 ppt
+        #bindsym k resize grow height 10 px or 10 ppt
+        #bindsym l resize shrink height 10 px or 10 ppt
+        #bindsym semicolon resize grow width 10 px or 10 ppt
+
+        bindsym Left resize shrink width 10 px or 1 ppt
+        bindsym Down resize grow height 10 px or 1 ppt
+        bindsym Up resize shrink height 10 px or 1 ppt
+        bindsym Right resize grow width 10 px or 1 ppt
+
+        bindsym Shift+Left resize shrink width 20 px or 5 ppt
+        bindsym Shift+Down resize grow height 20 px or 5 ppt
+        bindsym Shift+Up resize shrink height 20 px or 5 ppt
+        bindsym Shift+Right resize grow width 20 px or 5 ppt
+
+#  from resize to floating_modifier
+        bindsym s mode "default", exec --no-startup-id $HOME/.i3/scripts/slopsize.sh
+#  after floating slopsize
+        bindsym 1 mode "default", resize set 1000 600
+        bindsym 2 mode "default", resize set 1500 600
+        bindsym 3 mode "default", resize set 1200 1000
+
+
+        bindsym Return mode "default"
+        bindsym Escape mode "default"
+}
+#2f343f
+#f3f4f5
+#676E7D
+#203744
+
+set $bg-color 	         #203744
+set $inactive-bg-color   #1f3134
+set $text-color          #e6b422
+set $inactive-text-color #715c1f
+set $urgent-bg-color     #640125
+
+# window colors
+#                       border              background         text                 indicator
+client.focused          $bg-color           $bg-color          $text-color          #00ffff
+client.unfocused        $inactive-bg-color  $inactive-bg-color $inactive-text-color #0000ff
+client.focused_inactive $inactive-bg-color  $inactive-bg-color $inactive-text-color #0000ff
+client.urgent           $urgent-bg-color    $urgent-bg-color   $text-color          #ff00ff
+
+##                  border             background         text
+#active_workspace   $inactive-bg-color $inactive-bg-color $inactive-text-color
+#focused_workspace  $bg-color          $bg-color          $text-color
+#inactive_workspace $inactive-bg-color $inactive-bg-color $inactive-text-color
+#urgent_workspace   $urgent-bg-color   $urgent-bg-color   $text-color
+
+# bar
+bar {
+        #status_command i3status
+        #height 25
+         i3bar_command i3bar -t
+        status_command i3blocks -c ~/.i3/i3blocks.conf
+colors {
+        		background #1f3134
+	    	separator #757575
+            #                  border             background         text
+            active_workspace   $inactive-bg-color $inactive-bg-color $inactive-text-color
+            focused_workspace  $bg-color          $bg-color          $text-color
+            inactive_workspace $inactive-bg-color $inactive-bg-color $inactive-text-color
+            urgent_workspace   $urgent-bg-color   $urgent-bg-color   $text-color
+   	}
+
+    }
+
+# sticky window
+bindsym $mod+Shift+s sticky toggle
+
+popup_during_fullscreen smart
+
+# floating
+floating_modifier Mod1
+floating_minimum_size 75 x 50
+floating_maximum_size -1 x -1
+for_window [class="keepassx"] floating enable
+for_window [class="vlc"] floating enable
+for_window [class="feh"] floating enable
+for_window [class="xreader"] floating enable
+for_window [class="xfce4-appfinder"] floating enable
+for_window [class="synaptic"] floating enable
+for_window [class="mpv"] floating enable
+
+# default workspaces
+#assign [class="Firefox"] $workspace1
+#assign [class="Thunar"] $workspace3
+#assign [class="Clementine"] $workspace4
+#assign [class="Xplayer"] $workspace5
+#assign [class="Standard Notes"] $workspace3
+
+# key-bindings
+# Pulse Audio controls
+bindsym XF86AudioRaiseVolume exec --no-startup-id pactl set-sink-volume 0 +5% #increase sound volume
+bindsym XF86AudioLowerVolume exec --no-startup-id pactl set-sink-volume 0 -5% #decrease sound volume
+bindsym XF86AudioMute exec --no-startup-id pactl set-sink-mute 0 toggle # mute sound
+
+# Media player controls
+bindsym XF86AudioPlay exec playerctl play
+bindsym XF86AudioPause exec playerctl pause
+bindsym XF86AudioNext exec playerctl next
+bindsym XF86AudioPrev exec playerctl previous
+bindsym XF86Launch7 exec xfce4-screenshooter -f -d 1 -s /home/user/Pictures/xfce4-screenshooter
+bindsym XF86Launch6 exec xfce4-screenshooter -r -d 1 -s /home/user/Pictures/xfce4-screenshooter
+bindsym XF86Launch5 exec xfce4-screenshooter -w -d 1 -s /home/user/Pictures/xfce4-screenshooter
+bindsym XF86Tools exec /bin/lock
+bindsym Mod1+XF86Tools exec /home/user/.config/i3lock/i3lock.sh
+bindsym $mod+Shift+v exec Xplayer
+bindsym $mod+Shift+p exec knotes
+bindsym $mod+Shift+m exec clementine
+bindsym $mod+Shift+t exec thunar
+bindsym $mod+Shift+f exec firefox
+bindsym Mod1+Shift+q exec qutebrowser
+bindsym $mod+Return exec gnome-terminal
+bindsym $mod+Shift+n exec stnote
+bindsym $mod+d exec rofi -show run -lines 10 -eh 2 -width 100 -padding 450 -opacity "85" -bw 0 -bc "$bg-color" -bg "$bg-color" -fg "$text-color" -hlbg "$bg-color" -hlfg "#9575cd" -font "System San Francisco Display 18"
+bindsym Mod1+shift+d exec ~/.local/bin/rofii
+bindsym Mod1+shift+b exec ~/.local/bin/bookmarks.sh
+bindsym Mod1+shift+w exec ~/.local/bin/websearch.sh
+#bindsym Mod1+shift+p exec rofi-pass /home/user/.config/rofi-pass/config
+#bindsym Mod1+k exec rofi_keepass /home/user/Documents/MyKey/KeePassX.kdb
+bindsym $mod+r mode "resize"
+bindsym $mod+b split h
+bindsym $mod+v split v
+bindsym $mod+f fullscreen 
+bindsym $mod+s layout stacking
+bindsym $mod+w layout tabbed
+bindsym $mod+e layout toggle split
+
+bindsym $mod+Shift+space floating toggle
+bindsym $mod+space focus mode_toggle
+bindsym $mod+p focus parent
+bindsym $mod+o focus child
+
+bindsym $mod+Shift+c reload
+bindsym $mod+Shift+r restart
+bindsym $mod+Shift+q kill
+
+# Enable/disable logging 
+#bindsym $mod+shift+x shmlog toggle 
+# or, from a terminal: 
+# increase the shared memory log buffer to 50 MiB 
+#i3-msg shmlog $((50*1024*1024))
+# Enable/disable logging 
+#bindsym $mod+x debuglog toggle
+
+#bindsym $mod+Shift+x exec i3lock --color 314d5c -i /home/user/Pictures/icons/lock.png
+#bindsym $mod+Shift+x exec i3lock --color 2c4f54
+#bindsym $mod+Shift+x exec /home/user/.config/i3lock/i3lock.sh
+#bindsym Mod1+l exec /bin/lock
+
+#--color 2c4f54
+
+#Logout
+#bindsym $mod+Shift+e exec "i3-nagbar -t warning -m 'You pressed the exit shortcut. Do you really want to exit i3? This will end your X session.' -b 'Yes, exit i3' 'i3-msg exit'"
+bindsym $mod+Shift+e exec /home/user/.i3/scripts/exit_menu
+
+set $Locker i3lock && sleep 1
+
+set $mode_power power
+bindsym Mod1+Shift+XF86Tools mode "$mode_power"
+mode "$mode_power" {
+    bindsym l mode "default", exec --no-startup-id $HOME/.i3/scripts/i3exit lock
+    bindsym e mode "default", exec --no-startup-id $HOME/.i3/scripts/i3exit logout
+    bindsym s mode "default", exec --no-startup-id $HOME/.i3/scripts/i3exit suspend
+    bindsym h mode "default", exec --no-startup-id $HOME/.i3/scripts/i3exit hibernate
+    bindsym r mode "default", exec --no-startup-id $HOME/.i3/scripts/i3exit reboot
+    bindsym p mode "default", exec --no-startup-id $HOME/.i3/scripts/i3exit shutdown
+
+    bindsym Return mode "default"
+    bindsym Escape mode "default"
+}
+
+
+# startup
+#exec_always --no-startup-id xsetroot -bg black
+exec_always --no-startup-id feh --bg-scale /home/user/Pictures/wallpaper/wallpaper2.jpg
+exec_always --no-startup-id xrandr --output VIRTUAL1 --off --output DP3 --off --output DP2 --off --output DP1 --off --output HDMI3 --mode 1920x1080 --pos 0x0 --rotate normal --output HDMI2 --off --output HDMI1 --off --output VGA1 --off
+
+exec_always --no-startup-id xautolock -time 15 -locker lock
+#exec_always --no-startup-id /home/user/.config/awesome/locker.sh
+exec --no-startup-id compton -f
+exec_always --no-startup-id /etc/systemd/system/mbpfan.service
+exec_always --no-startup-id fcitx
+#exec_always --no-startup-id fluxgui
+#88:63:DF:EF:F8:FD
+
+# i3-gaps ###################################################
+
+gaps inner 5
+gaps outer 3
+
+for_window [class="^.*"] border pixel 0
+
+# 複数画面のworkspaceのみ適用
+smart_gaps on
+
+# i3-extrasのパッチに基づいて、スマートボーダーが設定可能な方法で追加されました。 有効にすると、このパッチはこのワークスペース内の唯一のコンテナでない場合にのみ、コンテナの周りに罫線を描画します。 デフォルトでは無効になっており、以下のコマンドで有効にすることができます。 no_gapsは画面の端までのギャップサイズが0の場合にのみアクティブにします。
+#smart_borders on_gaps
+
+# ここでは、i3の設定でこの機能をどのように使用できるかについて考えてみましょう。 ギャップモードに入るには、単に$ mod + Shift + gを押してください。 次に外側と内側のギャップを修正するためにoとiの間で選択します。 このモードでは、+ /  - （現在のワークスペースのイン/デクリメント）または0（現在のワークスペースのギャップを除去）のいずれかを押すことができます。 これらのキーでShiftキーを押すと、変更はすべてのワークスペースでグローバルになります。
+
+set $mode_gaps Gaps: (o) outer, (i) inner
+set $mode_gaps_outer Outer Gaps: +|-|0|d (local), Shift + +|-|0|d (global)
+set $mode_gaps_inner Inner Gaps: +|-|0|d (local), Shift + +|-|0|d (global)
+bindsym $mod+Shift+g mode "$mode_gaps"
+
+mode "$mode_gaps" {
+bindsym o      mode "$mode_gaps_outer"
+bindsym i      mode "$mode_gaps_inner"
+
+bindsym 0      mode "default", exec --no-startup-id i3-msg "gaps inner current set 0" && i3-msg "gaps outer current set 0"
+bindsym d      mode "default", exec --no-startup-id i3-msg "gaps inner current set $default_gaps_inner" && i3-msg "gaps outer current set $default_gaps_outer"
+
+bindsym Return mode "default"
+bindsym Escape mode "default"
+}
+
+mode "$mode_gaps_inner" {
+bindsym plus  gaps inner current plus 5
+bindsym minus gaps inner current minus 5
+bindsym 0     gaps inner current set 0
+bindsym d     mode "default", gaps inner current set $default_gaps_inner
+
+
+bindsym Shift+plus  gaps inner all plus 5
+bindsym Shift+minus gaps inner all minus 5
+bindsym Shift+0     gaps inner all set 0
+ bindsym Shift+d mode "default", gaps inner all set $default_gaps_inner
+
+bindsym Return mode "default"
+bindsym Escape mode "default"
+}
+
+mode "$mode_gaps_outer" {
+bindsym plus  gaps outer current plus 5
+bindsym minus gaps outer current minus 5
+bindsym 0     gaps outer current set 0
+bindsym d mode "default", gaps outer current set $default_gaps_outer
+
+bindsym Shift+plus  gaps outer all plus 5
+bindsym Shift+minus gaps outer all minus 5
+bindsym Shift+0     gaps outer all set 0
+bindsym Shift+d mode "default", gaps outer all set $default_gaps_outer
+
+bindsym Return mode "default"
+bindsym Escape mode "default"
+}
+
+
+# workspaceごとの設定
+
+#workspace2 gaps inner 20
+#workspace2 gaps outer 30
+
+#workspace3 gaps inner 20
+#workspace3 gaps outer 100
+
+#workspace4 gaps inner 20
+#workspace4 gaps outer 100
+
+#workspace5 gaps inner 20
+
+
+
+# i3gaps ここまで
+
+
+#xautolock -time 1 -locker "i3lock /bin/lock"

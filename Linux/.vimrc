@@ -54,8 +54,8 @@ endif
 "set mouse=a	-	" Enable mouse usage (all modes)
 
 " Source a global configuration file if available
-"if filereadable("/home/harish/.vimrc")
-"  source /home/harish/.vimrc
+"if filereadable("/home/user/.vimrc")
+"  source /home/user/.vimrc
 "endif
 "let $VIM ="$HOME/.vimrc"
 "LeaderKey

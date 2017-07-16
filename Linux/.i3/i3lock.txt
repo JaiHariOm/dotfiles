@@ -1,0 +1,22 @@
+
+use i3lock
+pkg-config libxcb libxcb-util libpam-dev libcairo-dev libxcb-xinerama libevlibx11-dev libx11-xcb-dev libxkbcommon >= 0.5.0 libxkbcommon-x11 >= 0.5.0
+libxcb
+    libxcb-util
+    libpam-dev
+    libcairo-dev
+    libxcb-xinerama
+    libev
+    libx11-dev
+    libx11-xcb-dev
+    libxkbcommon >= 0.5.0
+    libxkbcommon-x11 >= 0.5.0
+
+
+i3lock.sh
+
+#!/usr/bin/env bash
+set -eu
+
+[[ -z "$(pgrep i3lock)" ]] || exit
+i3lock -n -u -t -i ${HOME}/.config/i3lock/lock.png
